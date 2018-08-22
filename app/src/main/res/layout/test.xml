@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.hx.material.ui.FoldingView
+
+    <Button
+        android:id="@+id/fold_cotnent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:text="水电费佛挡杀佛斯科拉分模式大机构ID暑假工ID瑟吉欧ID瑟吉欧折叠"/>
-    </com.hx.material.ui.FoldingView>
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/fold_right_content" />
+</LinearLayout>

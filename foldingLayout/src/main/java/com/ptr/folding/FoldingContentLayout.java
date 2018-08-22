@@ -58,7 +58,7 @@ import java.util.Arrays;
  * like effect and smoothen out the edges.
  *
  */
-public class FoldingRightLayout extends ViewGroup {
+public class FoldingContentLayout extends ViewGroup {
 
     /*
      * A bug was introduced in Android 4.3 that ignores changes to the Canvas
@@ -123,16 +123,16 @@ public class FoldingRightLayout extends ViewGroup {
     private Bitmap mFullBitmap;
     private Rect mDstRect;
 
-    public FoldingRightLayout(Context context) {
+    public FoldingContentLayout(Context context) {
         super(context);
     }
 
-    public FoldingRightLayout(Context context, AttributeSet attrs) {
+    public FoldingContentLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public FoldingRightLayout(Context context, AttributeSet attrs, int defStyle) {
+    public FoldingContentLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
     }

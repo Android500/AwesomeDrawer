@@ -5,14 +5,13 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
 
-    <com.ptr.folding.FoldingLayout
+    <com.ptr.folding.BaseFoldingLayout
         android:id="@+id/fold_view"
         android:layout_width="match_parent"
-
+        app:foldNumber="5"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
@@ -41,18 +40,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:text="爱迪生撒多撒多所大奥多撒多撒多所多撒多所" />
+                android:padding="10dp"
+                android:text="@string/android_desc" />
 
         </LinearLayout>
 
-    </com.ptr.folding.FoldingLayout>
+    </com.ptr.folding.BaseFoldingLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
