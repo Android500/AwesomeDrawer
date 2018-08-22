@@ -41,6 +41,8 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:padding="10dp"
+                android:lineSpacingExtra="8dp"
+                android:textSize="16sp"
                 android:text="@string/android_desc" />
 
         </LinearLayout>

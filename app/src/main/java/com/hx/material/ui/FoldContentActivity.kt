@@ -8,19 +8,18 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import kotlinx.android.synthetic.main.activity_drawer.*
+import kotlinx.android.synthetic.main.acitvity_fold_content.*
 import ui.material.hx.com.hxmaterial.R
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class FoldContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_drawer)
+        setContentView(R.layout.acitvity_fold_content)
         setSupportActionBar(toolbar)
 
 

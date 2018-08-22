@@ -18,6 +18,7 @@
 package com.ptr.folding;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -39,10 +40,28 @@ public class FoldingDrawerLayout extends DrawerLayout {
 
 	public FoldingDrawerLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context, attrs);
 	}
 
 	public FoldingDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		init(context, attrs);
+	}
+
+	private int mNumberOfFolds;
+
+	public void init(Context context, AttributeSet attrs) {
+		// now style everything!
+		TypedArray ta = context.obtainStyledAttributes(attrs,
+				R.styleable.FoldingMenu);
+		int mFoldNumber = ta.getInt(R.styleable.FoldingMenu_foldNumber,
+				mNumberOfFolds);
+		if (mFoldNumber > 0 && mFoldNumber < 7) {
+			mNumberOfFolds = mFoldNumber;
+		} else {
+			mNumberOfFolds = 2;
+		}
+		ta.recycle();
 	}
 
 	@Override
@@ -56,6 +75,7 @@ public class FoldingDrawerLayout extends DrawerLayout {
 				System.out.println("at" + i);
 				BaseFoldingLayout foldingNavigationLayout = new BaseFoldingLayout(
 						getContext());
+				foldingNavigationLayout.setNumberOfFolds(mNumberOfFolds);
 				foldingNavigationLayout.setAnchorFactor(1);
 				removeView(child);
 				foldingNavigationLayout.addView(child);
@@ -64,7 +84,7 @@ public class FoldingDrawerLayout extends DrawerLayout {
 			}
 
 		}
-		setDrawerListener(new DrawerListener() {
+		addDrawerListener(new DrawerListener() {
 
 			@Override
 			public void onDrawerStateChanged(int arg0) {
