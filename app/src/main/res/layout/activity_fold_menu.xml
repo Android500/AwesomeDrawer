@@ -34,8 +34,10 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
             android:scaleType="fitXY"
+            android:padding="10dp"
+            android:lineSpacingExtra="8dp"
+            android:textSize="16sp"
             android:text="@string/android_desc" />
 
     </LinearLayout>
