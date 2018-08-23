@@ -1,10 +1,11 @@
 package com.hx.material.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import com.hx.material.ui.folding.FoldContentActivity
+import com.hx.material.ui.folding.FoldDrawerMenu2Activity
+import com.hx.material.ui.folding.FoldDrawerMenuActivity
 import kotlinx.android.synthetic.main.acitvity_main.*
 import ui.material.hx.com.hxmaterial.R
 

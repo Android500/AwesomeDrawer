@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/id_left_menu"
-        android:name="com.hx.material.ui.LeftMenuFragment"
+        android:name="com.hx.material.ui.MenuFragment"
         android:layout_width="280dp"
         android:layout_height="match_parent" />
 

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hx.material.ui.FoldContentActivity"
+        <activity android:name="com.hx.material.ui.folding.FoldContentActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.hx.material.ui.FoldDrawerMenuActivity"
+        <activity android:name="com.hx.material.ui.folding.FoldDrawerMenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.hx.material.ui.FoldDrawerMenu2Activity"
+        <activity android:name="com.hx.material.ui.folding.FoldDrawerMenu2Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
