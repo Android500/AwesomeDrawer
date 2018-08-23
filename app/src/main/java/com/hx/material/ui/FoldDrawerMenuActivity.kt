@@ -38,14 +38,7 @@ class FoldDrawerMenuActivity: AppCompatActivity() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 drawerView as ViewGroup
                 //fold_view.foldFactor = drawerView.measuredWidth.toFloat() / metrics.widthPixels.toFloat() * slideOffset
-                Log.e("tag", "child right: " + drawerView.getChildAt(0).right + "right width: " + drawerView.getChildAt(0).measuredWidth + " drawerView: " + drawerView.getChildAt(0).javaClass.simpleName)
                 content.setTranslationX(drawerView.measuredWidth * slideOffset)
-                Log.e("tag", "drawerView: " + ViewCompat.getElevation(drawerView) + "  getPaddingEnd: " +  ViewCompat.getPaddingEnd(drawerView))
-
-                Log.e("tag", "child: " + drawerView.javaClass.simpleName + " measuredWidth: " +  drawerView.measuredWidth)
-                Log.e("tag", "horizontalFadingEdgeLength: " + drawer_layout.horizontalFadingEdgeLength )
-
-
             }
 
             override fun onDrawerOpened(drawerView: View) {}
