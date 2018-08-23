@@ -19,10 +19,12 @@ package com.ptr.folding;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Debug;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,9 +74,9 @@ public class FoldingDrawerLayout extends DrawerLayout {
 		for (int i = 0; i < childCount; i++) {
 			final View child = getChildAt(i);
 			if (isDrawerView2(child)) {
-				System.out.println("at" + i);
 				BaseFoldingLayout foldingNavigationLayout = new BaseFoldingLayout(
 						getContext());
+
 				foldingNavigationLayout.setNumberOfFolds(mNumberOfFolds);
 				foldingNavigationLayout.setAnchorFactor(1);
 				removeView(child);

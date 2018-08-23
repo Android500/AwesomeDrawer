@@ -14,17 +14,13 @@ import android.view.WindowManager
 import kotlinx.android.synthetic.main.acitvity_fold_content.*
 import ui.material.hx.com.hxmaterial.R
 
-class FoldContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class FoldContentActivity : AppCompatActivity() {
 
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitvity_fold_content)
         setSupportActionBar(toolbar)
-
-
-
-        nav_view.setNavigationItemSelectedListener(this)
 
         val metrics = DisplayMetrics()
         val wdm = getSystemService(Activity.WINDOW_SERVICE) as WindowManager
@@ -56,26 +52,4 @@ class FoldContentActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         }
     }
 
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
-    }
 }

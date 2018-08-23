@@ -3,8 +3,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="fold_menu">折叠菜单</string>
+    <string name="fold_menu2">折叠菜单2</string>
+    <string name="fold_menu">折叠Drawer菜单</string>
     <string name="fold_right_content">折叠内容</string>
 
 </resources>

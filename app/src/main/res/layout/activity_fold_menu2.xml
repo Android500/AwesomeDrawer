@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.ptr.folding.FoldingDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.ptr.folding.FoldingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    app:foldNumber="5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slide_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
+    app:foldNumber="5"
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+    <fragment
+        android:id="@+id/id_left_menu"
+        android:name="com.hx.material.ui.LeftMenuFragment"
+        android:layout_width="280dp"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/content"
@@ -49,7 +45,4 @@
 
     </LinearLayout>
 
-
-
-
-</com.ptr.folding.FoldingDrawerLayout>
+</com.ptr.folding.FoldingPaneLayout>

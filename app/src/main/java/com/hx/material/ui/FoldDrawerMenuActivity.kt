@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.activity_fold_menu.*
 import ui.material.hx.com.hxmaterial.R
 import android.support.v4.view.ViewCompat.setTranslationX
 import android.opengl.ETC1.getWidth
-
+import android.support.v4.view.ViewCompat
+import android.view.ViewGroup
 
 
 /**
@@ -35,15 +36,21 @@ class FoldDrawerMenuActivity: AppCompatActivity() {
         drawer_layout.setScrimColor(Color.TRANSPARENT);
         drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                drawerView as ViewGroup
                 //fold_view.foldFactor = drawerView.measuredWidth.toFloat() / metrics.widthPixels.toFloat() * slideOffset
-                Log.e("tag", "right: " + drawerView.right)
-                //content.layout(drawerView.right, 0, 0, 0)
-                content.setTranslationX(drawerView.width * slideOffset)
+                Log.e("tag", "child right: " + drawerView.getChildAt(0).right + "right width: " + drawerView.getChildAt(0).measuredWidth + " drawerView: " + drawerView.getChildAt(0).javaClass.simpleName)
+                content.setTranslationX(drawerView.measuredWidth * slideOffset)
+                Log.e("tag", "drawerView: " + ViewCompat.getElevation(drawerView) + "  getPaddingEnd: " +  ViewCompat.getPaddingEnd(drawerView))
+
+                Log.e("tag", "child: " + drawerView.javaClass.simpleName + " measuredWidth: " +  drawerView.measuredWidth)
+                Log.e("tag", "horizontalFadingEdgeLength: " + drawer_layout.horizontalFadingEdgeLength )
+
+
             }
 
             override fun onDrawerOpened(drawerView: View) {}
-            override fun onDrawerClosed(drawerView: View) {
-            }
+
+            override fun onDrawerClosed(drawerView: View) {}
 
             override fun onDrawerStateChanged(newState: Int) {}
         })

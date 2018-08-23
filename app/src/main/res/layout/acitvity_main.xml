@@ -30,4 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fold_menu" />
+
+    <Button
+        android:id="@+id/fold_menu2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fold_menu2" />
 </LinearLayout>
