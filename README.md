@@ -1,3 +1,3 @@
 # HxMaterial
 materail awsome anim
-android 折叠是效果的drawerLayout
+android 折叠效果的drawerLayout
