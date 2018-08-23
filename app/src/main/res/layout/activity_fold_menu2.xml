@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/slide_layout"
     android:layout_width="match_parent"
-    app:foldNumber="5"
+    app:foldNumber="6"
     android:layout_height="match_parent">
 
     <fragment

@@ -11,7 +11,7 @@
     <com.ptr.folding.BaseFoldingLayout
         android:id="@+id/fold_view"
         android:layout_width="match_parent"
-        app:foldNumber="5"
+        app:foldNumber="6"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
