@@ -3,6 +3,7 @@ package com.hx.material.ui
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.hx.material.ui.curtain.CurtainActivity
 import com.hx.material.ui.folding.FoldContentActivity
 import com.hx.material.ui.folding.FoldDrawerMenu2Activity
 import com.hx.material.ui.folding.FoldDrawerMenuActivity
@@ -24,6 +25,10 @@ class MainAcitvity : AppCompatActivity() {
 
         fold_menu2.setOnClickListener {
             startActivity(Intent(this, FoldDrawerMenu2Activity::class.java))
+        }
+
+        curtain_menu.setOnClickListener {
+            startActivity(Intent(this, CurtainActivity::class.java))
         }
     }
 }

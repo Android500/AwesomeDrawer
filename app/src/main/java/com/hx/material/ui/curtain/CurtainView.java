@@ -33,6 +33,7 @@ public class CurtainView extends View {
 
     private float progress;
 
+
     public CurtainView(Context context) {
         super(context);
         init();
@@ -50,7 +51,26 @@ public class CurtainView extends View {
 
 
     public void setWaveHeight(float progress) {
-        this.progress = progress / 100;
+        this.progress = progress;
+        Log.e("TAG" , "progress: " + progress);
+        invalidate();
+    }
+
+    public void setTexture(Bitmap bitmap){
+        this.mbitmap = bitmap;
+        bitmapwidth = mbitmap.getWidth();
+        bitmapheight = mbitmap.getHeight();
+        int index = 0;
+        for (int i = 0; i < HEIGHT + 1; i++) {
+            float fy = bitmapheight / (float) HEIGHT * i;
+            for (int j = 0; j < WIDTH + 1; j++) {
+                float fx = bitmapwidth / (float) WIDTH * j;
+                //偶数位记录x坐标  奇数位记录Y坐标
+                origs[index * 2 + 0] = verts[index * 2 + 0] = fx;
+                origs[index * 2 + 1] = verts[index * 2 + 1] = fy;
+                index++;
+            }
+        }
         invalidate();
     }
 
@@ -69,7 +89,7 @@ public class CurtainView extends View {
                 float vXPostion = origs[(i*(WIDTH+1)+j)*2+0] + (bitmapwidth - origs[(i*(WIDTH+1)+j)*2+0]) * progress;
                 //垂直方向正弦曲线优化后的坐标
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*1*Math.PI + k);
-                Log.e("TAG" , "vXSinPostion: " + vXSinPostion);
+                //Log.e("TAG" , "vXSinPostion: " + vXSinPostion);
                 //x坐标不变
                 verts[(i*(WIDTH+1)+j)*2+0]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
                 //增加k值是为了让相位产生移动，从而可以飘动起来
@@ -100,24 +120,12 @@ public class CurtainView extends View {
     int bitmapheight;
 
     public void init() {
-        mbitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.timg);
-        bitmapwidth = mbitmap.getWidth();
-        bitmapheight = mbitmap.getHeight();
+        //mbitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.timg);
+        //bitmapwidth = mbitmap.getWidth();
+        //bitmapheight = mbitmap.getHeight();
 
         COUNT = (WIDTH + 1) * (HEIGHT + 1);
         verts = new float[COUNT * 2];
         origs = new float[COUNT * 2];
-        int index = 0;
-        for (int i = 0; i < HEIGHT + 1; i++) {
-            float fy = bitmapheight / (float) HEIGHT * i;
-            for (int j = 0; j < WIDTH + 1; j++) {
-                float fx = bitmapwidth / (float) WIDTH * j;
-                //偶数位记录x坐标  奇数位记录Y坐标
-                origs[index * 2 + 0] = verts[index * 2 + 0] = fx;
-                origs[index * 2 + 1] = verts[index * 2 + 1] = fy;
-                index++;
-            }
-        }
-
     }
 }
