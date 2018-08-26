@@ -137,7 +137,7 @@ public class CurtainView extends View {
     int bitmapheight;
 
     public void init() {
-        //mbitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.timg);
+        //mbitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.timg2);
         //bitmapwidth = mbitmap.getWidth();
         //bitmapheight = mbitmap.getHeight();
 
