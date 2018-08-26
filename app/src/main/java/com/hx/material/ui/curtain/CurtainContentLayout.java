@@ -188,8 +188,8 @@ public class CurtainContentLayout extends FrameLayout {
 
     public CurtainContentLayout(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
-
-        defaultMenuWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 275, getResources().getDisplayMetrics());
+        //最大划开区域为屏幕宽的80%
+        defaultMenuWidth = (int)(getResources().getDisplayMetrics().widthPixels * 0.8f);
 
         curtainView = new CurtainView(context);
         //curtainView.setDirection(CurtainView.DIRECTION_LEFT);
@@ -340,7 +340,7 @@ public class CurtainContentLayout extends FrameLayout {
                 if(Math.abs(velocityX) <= 0 && initX != currentX){
                     if(event.getX() > defaultMenuWidth / 2){
                         slidingAnimator.setIntValues(vx, defaultMenuWidth);
-                        slidingAnimator.setDuration((long)((defaultMenuWidth - vx) / (float)defaultMenuWidth * 400L));
+                        slidingAnimator.setDuration((long)(Math.abs(defaultMenuWidth - vx) / (float)defaultMenuWidth * 400L));
                         slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }else{
