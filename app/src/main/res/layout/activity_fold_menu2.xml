@@ -1,10 +1,10 @@
 <com.ptr.folding.FoldingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/slide_layout"
     android:layout_width="match_parent"
-    app:foldNumber="6"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:foldNumber="6">
 
     <fragment
         android:id="@+id/id_left_menu"
@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:logo="@mipmap/rounded_corners"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
@@ -37,11 +38,11 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:padding="10dp"
             android:lineSpacingExtra="8dp"
-            android:textSize="16sp"
-            android:text="@string/android_desc" />
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:text="@string/android_desc"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -6,10 +6,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/android_doctor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hx.material.ui.folding.FoldContentActivity"
+        <activity
+            android:name="com.hx.material.ui.folding.FoldContentActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.hx.material.ui.folding.FoldDrawerMenuActivity"
+        <activity
+            android:name="com.hx.material.ui.folding.FoldDrawerMenuActivity"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +27,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.hx.material.ui.MainAcitvity"
+        <activity
+            android:name="com.hx.material.ui.MainAcitvity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +37,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.hx.material.ui.folding.FoldDrawerMenu2Activity"
+        <activity
+            android:name="com.hx.material.ui.folding.FoldDrawerMenu2Activity"
+
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.hx.material.ui.curtain.CurtainTestActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
