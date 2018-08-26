@@ -29,6 +29,9 @@ public class CurtainView extends View {
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);
     private float[] verts = new float[COUNT * 2];
     private float[] origs = new float[COUNT * 2];
+    private int[] colors = new int[COUNT * 2];
+    private int maxAlpha = 0xFF;
+
     private float k;
 
     private float progress;
@@ -78,7 +81,8 @@ public class CurtainView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
+        int index = 0;
+        int alpha = 0;
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
@@ -98,11 +102,24 @@ public class CurtainView extends View {
 
                 verts[(i * (WIDTH + 1) + j) * 2 + 1] = origs[(i * (WIDTH + 1) + j) * 2 + 1] + yOffset;//
 
+                int color;
+                int channel = 255 - (int)(yOffset * 2);
+                if (channel < 255) {
+                    alpha = (int) ((255 - channel) / 120.0F * maxAlpha) * 4;
+                }
+                channel = channel < 0 ? 0 : channel;
+                channel = channel > 255 ? 255 : channel;
+
+                color = 0xFF000000 | channel << 16 | channel << 8 | channel;
+
+                colors[index] = color;
+                index += 1;
+
             }
         }
         //k+=0.4f;
 
-        canvas.drawBitmapMesh(mbitmap, WIDTH, HEIGHT, verts, 0, null, 0, null);
+        canvas.drawBitmapMesh(mbitmap, WIDTH, HEIGHT, verts, 0, colors, 0, null);
         //invalidate();
 
     }

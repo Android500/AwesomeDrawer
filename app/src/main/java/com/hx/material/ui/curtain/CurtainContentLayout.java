@@ -340,12 +340,12 @@ public class CurtainContentLayout extends FrameLayout {
                 if(Math.abs(velocityX) <= 0 && initX != currentX){
                     if(event.getX() > defaultMenuWidth / 2){
                         slidingAnimator.setIntValues(vx, defaultMenuWidth);
-                        slidingAnimator.setDuration(400L);
+                        slidingAnimator.setDuration((long)((defaultMenuWidth - vx) / (float)defaultMenuWidth * 400L));
                         slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }else{
                         slidingAnimator.setIntValues(vx, 0);
-                        slidingAnimator.setDuration(400L);
+                        slidingAnimator.setDuration((long)(vx / (float)defaultMenuWidth * 400L));
                         slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }
