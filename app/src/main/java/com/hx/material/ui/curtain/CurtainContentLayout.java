@@ -168,7 +168,7 @@ public class CurtainContentLayout extends FrameLayout {
                     slidingAnimator.setIntValues(vx, 0);
                 }
 
-                slidingAnimator.setDuration(200);
+                slidingAnimator.setDuration(400);
 
                 slidingAnimator.start();
             }
