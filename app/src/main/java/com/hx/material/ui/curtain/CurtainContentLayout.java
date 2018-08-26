@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
@@ -245,6 +246,7 @@ public class CurtainContentLayout extends FrameLayout {
             case SLIDING_MODE_CLOSED:
                 slidingAnimator.setIntValues(vx, defaultMenuWidth);
                 slidingAnimator.setDuration(400L);
+                slidingAnimator.setInterpolator(new DecelerateInterpolator());
                 slidingAnimator.start();
                 break;
             case SLIDING_MODE_OPENED:
@@ -339,10 +341,12 @@ public class CurtainContentLayout extends FrameLayout {
                     if(event.getX() > defaultMenuWidth / 2){
                         slidingAnimator.setIntValues(vx, defaultMenuWidth);
                         slidingAnimator.setDuration(400L);
+                        slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }else{
                         slidingAnimator.setIntValues(vx, 0);
                         slidingAnimator.setDuration(400L);
+                        slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }
                 }
