@@ -91,8 +91,8 @@ public class CurtainView extends View {
 
                 //垂直方向竖直压缩时的坐标
                 float vXPostion = origs[(i*(WIDTH+1)+j)*2+0] + (bitmapwidth - origs[(i*(WIDTH+1)+j)*2+0]) * progress;
-                //垂直方向正弦曲线优化后的坐标
-                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*1*Math.PI + k);
+                //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
+                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*1.1*Math.PI + k);
                 //Log.e("TAG" , "vXSinPostion: " + vXSinPostion);
                 //x坐标不变
                 verts[(i*(WIDTH+1)+j)*2+0]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
