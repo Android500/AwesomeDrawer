@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.LongDef;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -82,7 +83,6 @@ public class CurtainView extends View {
         super.onDraw(canvas);
 
         int index = 0;
-        int alpha = 0;
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
@@ -102,17 +102,10 @@ public class CurtainView extends View {
 
                 verts[(i * (WIDTH + 1) + j) * 2 + 1] = origs[(i * (WIDTH + 1) + j) * 2 + 1] + yOffset;//
 
-                int color;
-                int channel = 255 - (int)(yOffset * 2);
-                if (channel < 255) {
-                    alpha = (int) ((255 - channel) / 120.0F * maxAlpha) * 4;
-                }
+                int channel = 255 - (int)(yOffset * 3);
                 channel = channel < 0 ? 0 : channel;
                 channel = channel > 255 ? 255 : channel;
-
-                color = 0xFF000000 | channel << 16 | channel << 8 | channel;
-
-                colors[index] = color;
+                colors[index] = 0xFF000000 | channel << 16 | channel << 8 | channel;
                 index += 1;
 
             }
