@@ -27,6 +27,10 @@ import static com.hx.curtain.drawer.R.styleable.CurtainMenu;
  */
 public class CurtainContentLayout extends FrameLayout {
 
+    interface OnCurtainLayoutListener{
+        void onSlide(View caurtainLayout, float slideOffset);
+    }
+
     private static final int DEFAULT_INTERCEPT_LENGTH = 30;
     private int defaultMenuWidth;
 
@@ -60,7 +64,13 @@ public class CurtainContentLayout extends FrameLayout {
 
     private ValueAnimator slidingAnimator;
     private float maxScrollRate;
+    private OnCurtainLayoutListener curtainLayoutListener;
     private GestureDetector gestureDetector;
+
+    public void setCurtainLayoutListener(OnCurtainLayoutListener curtainLayoutListener) {
+        this.curtainLayoutListener = curtainLayoutListener;
+    }
+
     private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onDown(MotionEvent event) {
@@ -146,6 +156,8 @@ public class CurtainContentLayout extends FrameLayout {
                 }
 
                 curtainView.setWaveHeight(vx / (float) curtainView.getMeasuredWidth());
+                if(curtainLayoutListener != null)
+                    curtainLayoutListener.onSlide(CurtainContentLayout.this, vx / (float) curtainView.getMeasuredWidth() / maxScrollRate);
             }
 
             return true;
@@ -294,6 +306,8 @@ public class CurtainContentLayout extends FrameLayout {
         }
 
         this.curtainView.setWaveHeight(this.vx / (float) curtainView.getMeasuredWidth());
+        if(curtainLayoutListener != null)
+            curtainLayoutListener.onSlide(CurtainContentLayout.this, vx / (float) curtainView.getMeasuredWidth() / maxScrollRate);
     }
 
     Integer getSlidingFactor() {

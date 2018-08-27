@@ -14,7 +14,7 @@ public class CurtainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curtain);
 
-
+        //CurtainContentLayout contentLayout = findViewById(R.id.curtain_layout);
     }
 
 
