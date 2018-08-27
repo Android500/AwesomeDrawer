@@ -48,15 +48,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.hx.material.ui.curtain.CurtainTestActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name="com.hx.material.ui.curtain.CurtainActivity"

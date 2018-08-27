@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hx.material.ui.tutorial.CurtainView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</com.hx.material.ui.tutorial.CurtainView>
+    <com.hx.material.ui.tutorial.CurtainView
+        android:id="@+id/curtain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="75"/>
+
+</FrameLayout>

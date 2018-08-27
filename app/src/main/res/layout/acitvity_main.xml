@@ -47,5 +47,11 @@
         android:id="@+id/curtain_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Curtain Views In Activity" />
+        android:text="Curtain View Styles" />
+
+    <Button
+        android:id="@+id/curtain_tutorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Curtain Effect Tutorial" />
 </LinearLayout>

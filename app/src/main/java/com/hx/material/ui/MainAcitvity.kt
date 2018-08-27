@@ -8,6 +8,7 @@ import com.hx.material.ui.curtain.MutilCurtainsActivity
 import com.hx.material.ui.folding.FoldContentActivity
 import com.hx.material.ui.folding.FoldDrawerMenu2Activity
 import com.hx.material.ui.folding.FoldDrawerMenuActivity
+import com.hx.material.ui.tutorial.CurtainDemoActivity
 import kotlinx.android.synthetic.main.acitvity_main.*
 import ui.material.hx.com.hxmaterial.R
 
@@ -35,6 +36,10 @@ class MainAcitvity : AppCompatActivity() {
 
         curtain_view.setOnClickListener {
             startActivity(Intent(this, MutilCurtainsActivity::class.java))
+        }
+
+        curtain_tutorial.setOnClickListener {
+            startActivity(Intent(this, CurtainDemoActivity::class.java))
         }
     }
 }
