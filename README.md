@@ -18,6 +18,7 @@
     app:behind_menu="@layout/menu_left"
     app:content="@layout/layout_curtain_content"
     app:h_waveCount="5"
+    app:maxRate="0.5"
     app:v_waveCount="1.1" />
 ```
 
@@ -41,7 +42,7 @@ There are three attributes which are applicable to `RippleView`.
   * `content`     menu的内容，必须提供这个属性，不然会异常
   * `h_waveCount` 水平方向折叠的波浪个数
   * `v_waveCount` 竖直方向折叠的波浪个数
-
+  * `maxRate`     menu最大的收缩比
 ### 应用在Menu中,和CurtainContentLayout的各种style预览如下：
  ![image](effect/curtain_menu.gif)           ![image](effect/mutil_curtain_views.gif)
 
