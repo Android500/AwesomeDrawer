@@ -36,8 +36,6 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 
 ### 自定义属性
 
-There are three attributes which are applicable to `RippleView`.
-
   * `behind_menu` menu后面的布局
   * `content`     menu的内容，必须提供这个属性，不然会异常
   * `h_waveCount` 水平方向折叠的波浪个数
