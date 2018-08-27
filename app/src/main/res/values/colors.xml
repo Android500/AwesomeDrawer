@@ -3,5 +3,6 @@
     <color name="colorPrimary">#2E7D32</color>
     <color name="colorPrimaryDark">#2E7D32</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="mine_v_line_color">#969696</color>
 
 </resources>

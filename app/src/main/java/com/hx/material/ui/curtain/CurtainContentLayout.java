@@ -189,7 +189,7 @@ public class CurtainContentLayout extends FrameLayout {
     public CurtainContentLayout(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
         //最大划开区域为屏幕宽的80%
-        defaultMenuWidth = (int)(getResources().getDisplayMetrics().widthPixels * 0.8f);
+        defaultMenuWidth = (int)(getResources().getDisplayMetrics().widthPixels * 0.75f);
 
         curtainView = new CurtainView(context);
         //curtainView.setDirection(CurtainView.DIRECTION_LEFT);
