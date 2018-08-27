@@ -44,6 +44,10 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 ### 应用在Menu中,和CurtainContentLayout的各种style预览如下：
  ![image](effect/curtain_menu.gif)           ![image](effect/mutil_curtain_views.gif)
 
+## Bolg
+
+  * [https://blog.csdn.net/u010949962](https://blog.csdn.net/u010949962)
+
 ## Contacts
 * QQ Group: 869593665
 
