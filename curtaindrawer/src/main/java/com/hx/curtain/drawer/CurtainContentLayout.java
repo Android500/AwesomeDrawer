@@ -27,7 +27,7 @@ import static com.hx.curtain.drawer.R.styleable.CurtainMenu;
  */
 public class CurtainContentLayout extends FrameLayout {
 
-    interface OnCurtainLayoutListener{
+    public interface OnCurtainLayoutListener{
         void onSlide(View caurtainLayout, float slideOffset);
     }
 
