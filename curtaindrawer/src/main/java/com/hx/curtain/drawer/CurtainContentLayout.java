@@ -59,7 +59,7 @@ public class CurtainContentLayout extends FrameLayout {
     private VelocityTracker velocityTracker;
 
     private ValueAnimator slidingAnimator;
-
+    private float maxScrollRate;
     private GestureDetector gestureDetector;
     private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
@@ -191,17 +191,17 @@ public class CurtainContentLayout extends FrameLayout {
 
     public CurtainContentLayout(Context context, AttributeSet attrs, int defStyle) throws Exception {
         super(context, attrs, defStyle);
-        //最大划开区域为屏幕宽的80%
-        defaultMenuWidth = (int) (getResources().getDisplayMetrics().widthPixels * 0.75f);
+
 
         TypedArray ta = context.obtainStyledAttributes(attrs, CurtainMenu);
         Float hWaveCount = ta.getFloat(R.styleable.CurtainMenu_h_waveCount, 5f);
         Float vWaveCount = ta.getFloat(R.styleable.CurtainMenu_v_waveCount, 1.1f);
         int menuLayoutId = ta.getResourceId(R.styleable.CurtainMenu_behind_menu, -1);
         int contentLayoutId = ta.getResourceId(R.styleable.CurtainMenu_content, -1);
-
+        maxScrollRate = ta.getFloat(R.styleable.CurtainMenu_maxRate, 0.75f);
         ta.recycle();
-
+        //相对于父view最大划开区域
+        defaultMenuWidth = (int) (getResources().getDisplayMetrics().widthPixels * maxScrollRate);
         curtainView = new CurtainView(context, hWaveCount, vWaveCount);
         //curtainView.setDirection(CurtainView.DIRECTION_LEFT);
 
@@ -325,7 +325,7 @@ public class CurtainContentLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        defaultMenuWidth = (int) (getMeasuredWidth() * 0.75f);
+        defaultMenuWidth = (int) (getMeasuredWidth() * maxScrollRate);
     }
 
     @Override

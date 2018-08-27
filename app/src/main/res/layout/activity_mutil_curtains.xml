@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,53 +14,76 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:logo="@mipmap/rounded_corners"
             android:background="?attr/colorPrimary"
+            app:logo="@mipmap/rounded_corners"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <include
-            layout="@layout/activity_curtain"
+        <com.hx.curtain.drawer.CurtainContentLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:behind_menu="@layout/menu_left"
+            app:content="@layout/layout_curtain_content"
+            app:h_waveCount="5"
+            app:maxRate="0.75"
+            app:v_waveCount="1.1" />
+
         <View
             android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <include
-            layout="@layout/activity_curtain"
+            android:layout_height="match_parent" />
+
+        <com.hx.curtain.drawer.CurtainContentLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:behind_menu="@layout/menu_left"
+            app:content="@layout/layout_curtain_content"
+            app:h_waveCount="3"
+            app:maxRate="0.75"
+            app:v_waveCount="3" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
-        <include
-            layout="@layout/activity_curtain"
+        <com.hx.curtain.drawer.CurtainContentLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:behind_menu="@layout/menu_left"
+            app:content="@layout/layout_curtain_content"
+            app:h_waveCount="6"
+            app:maxRate="0.5"
+            app:v_waveCount="2" />
 
         <View
             android:layout_width="10dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
-        <include
-            layout="@layout/activity_curtain"
+        <com.hx.curtain.drawer.CurtainContentLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:behind_menu="@layout/menu_left"
+            app:content="@layout/layout_curtain_content"
+            app:h_waveCount="6"
+            app:maxRate="0.3"
+            app:v_waveCount="1" />
     </LinearLayout>
 </LinearLayout>

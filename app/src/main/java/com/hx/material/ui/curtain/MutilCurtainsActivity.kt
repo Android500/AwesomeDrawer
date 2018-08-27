@@ -2,7 +2,7 @@ package com.hx.material.ui.curtain
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_curtains.*
+import kotlinx.android.synthetic.main.activity_mutil_curtains.*
 import ui.material.hx.com.hxmaterial.R
 
 /**
@@ -11,7 +11,7 @@ import ui.material.hx.com.hxmaterial.R
 class MutilCurtainsActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_curtains)
+        setContentView(R.layout.activity_mutil_curtains)
         setSupportActionBar(toolbar)
     }
 }

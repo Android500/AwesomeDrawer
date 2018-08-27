@@ -23,8 +23,10 @@
         <attr name="h_waveCount" format="float" />
         <!-- behind menu layout-->
         <attr name="behind_menu" format="reference" />
+        <!-- content layout-->
         <attr name="content" format="reference" />
-
+        <!-- curtain view max scroll distance for parent view-->
+        <attr name="maxRate" format="float" />
     </declare-styleable>
 
 </resources>
