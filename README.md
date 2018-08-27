@@ -3,9 +3,9 @@
 ## Introduction
 实现Android窗帘拉开折叠效果
 
-##Usage
+## Usage
 
-###xml布局文件使用
+### xml布局文件使用
 
 ```xml
 <com.hx.curtain.drawer.CurtainContentLayout 
@@ -21,7 +21,7 @@
     app:v_waveCount="1.1" />
 ```
 
-###监听滑动的系数
+### 监听滑动的系数
 
 ```java
 CurtainContentLayout curtain_layout = findViewById(R.id.curtain_layout);
@@ -33,7 +33,7 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 });
 ```
 
-###自定义属性
+### 自定义属性
 
 There are three attributes which are applicable to `RippleView`.
 
