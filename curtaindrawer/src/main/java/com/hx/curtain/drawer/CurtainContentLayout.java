@@ -1,24 +1,26 @@
-package com.hx.material.ui.curtain;
+package com.hx.curtain.drawer;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.ValueAnimator;
+import com.hx.curtain.drawer.nineoldandroids.animation.Animator;
+import com.hx.curtain.drawer.nineoldandroids.animation.ValueAnimator;
+
+import static com.hx.curtain.drawer.R.styleable.CurtainMenu;
+
 
 /**
  * Created by caifangmao on 15/3/26.
@@ -59,11 +61,11 @@ public class CurtainContentLayout extends FrameLayout {
     private ValueAnimator slidingAnimator;
 
     private GestureDetector gestureDetector;
-    private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener(){
+    private GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
-        public boolean onDown(MotionEvent event){
+        public boolean onDown(MotionEvent event) {
 
-            if(slidingMode != SLIDING_MODE_OPENED){
+            if (slidingMode != SLIDING_MODE_OPENED) {
                 slidingAnimator.cancel();
 
                 inSlidingMode = true;
@@ -71,7 +73,7 @@ public class CurtainContentLayout extends FrameLayout {
                 initX = (int) event.getX();
                 initY = (int) event.getY();
 
-                if(curtainTexture != null && !curtainTexture.isRecycled()){
+                if (curtainTexture != null && !curtainTexture.isRecycled()) {
                     curtainTexture.recycle();
 
                 }
@@ -82,10 +84,10 @@ public class CurtainContentLayout extends FrameLayout {
                 CurtainContentLayout.this.content.setVisibility(View.GONE);
 
                 return true;
-            }else{
-                if(event.getX() < defaultMenuWidth){
+            } else {
+                if (event.getX() < defaultMenuWidth) {
                     return false;
-                }else{
+                } else {
                     slidingAnimator.cancel();
 
                     inSlidingMode = true;
@@ -95,7 +97,7 @@ public class CurtainContentLayout extends FrameLayout {
 
                     vx = defaultMenuWidth;
 
-                    if(curtainTexture != null && !curtainTexture.isRecycled()){
+                    if (curtainTexture != null && !curtainTexture.isRecycled()) {
                         curtainTexture.recycle();
 
                     }
@@ -112,14 +114,14 @@ public class CurtainContentLayout extends FrameLayout {
         }
 
         @Override
-        public boolean onSingleTapUp(MotionEvent event){
+        public boolean onSingleTapUp(MotionEvent event) {
 
-            if(slidingMode == SLIDING_MODE_OPENED && event.getX() >= defaultMenuWidth){
+            if (slidingMode == SLIDING_MODE_OPENED && event.getX() >= defaultMenuWidth) {
                 slidingAnimator.setIntValues(vx, 0);
                 slidingAnimator.start();
 
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
@@ -127,45 +129,45 @@ public class CurtainContentLayout extends FrameLayout {
         }
 
         @Override
-        public boolean onScroll(MotionEvent ev1, MotionEvent ev2, float distanceX, float distanceY){
+        public boolean onScroll(MotionEvent ev1, MotionEvent ev2, float distanceX, float distanceY) {
 
-            if(CurtainContentLayout.this.content != null){
+            if (CurtainContentLayout.this.content != null) {
                 currentX = (int) ev2.getX();
                 currentY = (int) ev2.getY();
 
                 vx = slidingMode == SLIDING_MODE_CLOSED ? currentX - initX : defaultMenuWidth - (initX - currentX);
 
-                if(vx < 0){
+                if (vx < 0) {
                     vx = 0;
                 }
 
-                if(vx > CurtainContentLayout.this.menu.getWidth()){
+                if (vx > CurtainContentLayout.this.menu.getWidth()) {
                     vx = CurtainContentLayout.this.menu.getWidth();
                 }
 
-                curtainView.setWaveHeight(vx/(float)curtainView.getMeasuredWidth());
+                curtainView.setWaveHeight(vx / (float) curtainView.getMeasuredWidth());
             }
 
             return true;
         }
 
         @Override
-        public boolean onFling(MotionEvent ev1, MotionEvent ev2, float velocityX, float velocityY){
+        public boolean onFling(MotionEvent ev1, MotionEvent ev2, float velocityX, float velocityY) {
 
-            if(Math.abs(velocityX) > minVelocity * 5){
-                if(velocityX > 0){
+            if (Math.abs(velocityX) > minVelocity * 5) {
+                if (velocityX > 0) {
                     slidingAnimator.setIntValues(vx, defaultMenuWidth);
-                }else{
+                } else {
                     slidingAnimator.setIntValues(vx, 0);
                 }
 
                 slidingAnimator.setDuration((long) (((float) vx / Math.abs(velocityX)) * 1000.0F));
 
                 slidingAnimator.start();
-            }else{
-                if(ev2.getX() > defaultMenuWidth / 2){
+            } else {
+                if (ev2.getX() > defaultMenuWidth / 2) {
                     slidingAnimator.setIntValues(vx, defaultMenuWidth);
-                }else{
+                } else {
                     slidingAnimator.setIntValues(vx, 0);
                 }
 
@@ -179,25 +181,44 @@ public class CurtainContentLayout extends FrameLayout {
     };
 
 
-    public CurtainContentLayout(Context context){
+    public CurtainContentLayout(Context context) throws Exception {
         this(context, null);
     }
 
-    public CurtainContentLayout(Context context, AttributeSet attrs){
+    public CurtainContentLayout(Context context, AttributeSet attrs) throws Exception {
         this(context, attrs, 0);
     }
 
-    public CurtainContentLayout(Context context, AttributeSet attrs, int defStyle){
+    public CurtainContentLayout(Context context, AttributeSet attrs, int defStyle) throws Exception {
         super(context, attrs, defStyle);
         //最大划开区域为屏幕宽的80%
-        defaultMenuWidth = (int)(getResources().getDisplayMetrics().widthPixels * 0.75f);
+        defaultMenuWidth = (int) (getResources().getDisplayMetrics().widthPixels * 0.75f);
 
-        curtainView = new CurtainView(context);
+        TypedArray ta = context.obtainStyledAttributes(attrs, CurtainMenu);
+        Float hWaveCount = ta.getFloat(R.styleable.CurtainMenu_h_waveCount, 5f);
+        Float vWaveCount = ta.getFloat(R.styleable.CurtainMenu_v_waveCount, 1.1f);
+        int menuLayoutId = ta.getResourceId(R.styleable.CurtainMenu_behind_menu, -1);
+        int contentLayoutId = ta.getResourceId(R.styleable.CurtainMenu_content, -1);
+
+        ta.recycle();
+
+        curtainView = new CurtainView(context, hWaveCount, vWaveCount);
         //curtainView.setDirection(CurtainView.DIRECTION_LEFT);
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         addView(curtainView, 0, layoutParams);
         curtainView.setVisibility(View.GONE);
+
+
+        if (menuLayoutId != -1) {
+            addMenu(LayoutInflater.from(context).inflate(menuLayoutId, null, false));
+        }
+
+        if (contentLayoutId != -1) {
+            addContent(LayoutInflater.from(context).inflate(contentLayoutId, null, false));
+        } else {
+            throw new Exception("you must set curtain content layout!!!");
+        }
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -215,25 +236,28 @@ public class CurtainContentLayout extends FrameLayout {
                 setSlidingFactor(value);
             }
         });
-        slidingAnimator.addListener(new Animator.AnimatorListener(){
+        slidingAnimator.addListener(new Animator.AnimatorListener() {
 
             @Override
-            public void onAnimationCancel(Animator animator){}
+            public void onAnimationCancel(Animator animator) {
+            }
 
             @Override
-            public void onAnimationStart(Animator animator){}
+            public void onAnimationStart(Animator animator) {
+            }
 
             @Override
-            public void onAnimationEnd(Animator animator){
-                if(vx > defaultMenuWidth / 2){
+            public void onAnimationEnd(Animator animator) {
+                if (vx > defaultMenuWidth / 2) {
                     slidingMode = SLIDING_MODE_OPENED;
-                }else{
+                } else {
                     slidingMode = SLIDING_MODE_CLOSED;
                 }
             }
 
             @Override
-            public void onAnimationRepeat(Animator animator){}
+            public void onAnimationRepeat(Animator animator) {
+            }
 
         });
 
@@ -242,8 +266,8 @@ public class CurtainContentLayout extends FrameLayout {
 //
     }
 
-    public void toggle(){
-        switch(slidingMode){
+    public void toggle() {
+        switch (slidingMode) {
             case SLIDING_MODE_CLOSED:
                 slidingAnimator.setIntValues(vx, defaultMenuWidth);
                 slidingAnimator.setDuration(400L);
@@ -261,28 +285,28 @@ public class CurtainContentLayout extends FrameLayout {
     }
 
 
-    void setSlidingFactor(int slidingFactor){
+    void setSlidingFactor(int slidingFactor) {
         this.vx = slidingFactor;
 
-        if(this.vx <= 0){
+        if (this.vx <= 0) {
             this.content.setVisibility(View.VISIBLE);
             this.curtainView.setVisibility(View.GONE);
             inSlidingMode = false;
-        }else{
+        } else {
             this.content.setVisibility(View.GONE);
             this.curtainView.setVisibility(View.VISIBLE);
         }
 
-        this.curtainView.setWaveHeight(this.vx/ (float)curtainView.getMeasuredWidth());
+        this.curtainView.setWaveHeight(this.vx / (float) curtainView.getMeasuredWidth());
     }
 
-    Integer getSlidingFactor(){
+    Integer getSlidingFactor() {
         return this.vx;
     }
 
-    public void addContent(View content){
+    public void addContent(View content) {
 
-        if(content != null){
+        if (content != null) {
             this.content = content;
             this.content.setBackgroundColor(0xFFFFFFFF);
 
@@ -292,8 +316,8 @@ public class CurtainContentLayout extends FrameLayout {
         }
     }
 
-    public void addMenu(View menu){
-        if(menu != null){
+    public void addMenu(View menu) {
+        if (menu != null) {
             this.menu = menu;
 
             LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -303,19 +327,19 @@ public class CurtainContentLayout extends FrameLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent event){
-        if(event.getActionMasked() == MotionEvent.ACTION_DOWN && event.getX() <= DEFAULT_INTERCEPT_LENGTH){
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        if (event.getActionMasked() == MotionEvent.ACTION_DOWN && event.getX() <= DEFAULT_INTERCEPT_LENGTH) {
             return true;
         }
         return super.onInterceptTouchEvent(event);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
-        switch(event.getActionMasked()){
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
 
-                if(velocityTracker == null){
+                if (velocityTracker == null) {
                     velocityTracker = VelocityTracker.obtain();
                 }
 
@@ -338,21 +362,19 @@ public class CurtainContentLayout extends FrameLayout {
                 final float velocityY = velocityTracker.getYVelocity(pointerId);
                 final float velocityX = velocityTracker.getXVelocity(pointerId);
 
-                if(Math.abs(velocityX) <= 0 && initX != currentX){
-                    if(event.getX() > defaultMenuWidth / 2){
+                if (Math.abs(velocityX) <= 0 && initX != currentX) {
+                    if (event.getX() > defaultMenuWidth / 2) {
                         slidingAnimator.setIntValues(vx, defaultMenuWidth);
-                        slidingAnimator.setDuration((long)(Math.abs(defaultMenuWidth - vx) / (float)defaultMenuWidth * 400L));
+                        slidingAnimator.setDuration((long) (Math.abs(defaultMenuWidth - vx) / (float) defaultMenuWidth * 400L));
                         slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
-                    }else{
+                    } else {
                         slidingAnimator.setIntValues(vx, 0);
-                        slidingAnimator.setDuration((long)(vx / (float)defaultMenuWidth * 400L));
+                        slidingAnimator.setDuration((long) (vx / (float) defaultMenuWidth * 400L));
                         slidingAnimator.setInterpolator(new DecelerateInterpolator());
                         slidingAnimator.start();
                     }
                 }
-
-
 
 
                 break;
@@ -362,7 +384,7 @@ public class CurtainContentLayout extends FrameLayout {
     }
 
     @Override
-    public void setBackgroundColor(int color){
+    public void setBackgroundColor(int color) {
     }
 
     private Bitmap snapshot(View v) {
@@ -371,10 +393,10 @@ public class CurtainContentLayout extends FrameLayout {
         Canvas c = new Canvas(b);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Drawable bg = getBackground();
-        if(bg != null){
+        if (bg != null) {
             bg.setBounds(0, 0, getWidth(), getHeight());
             bg.draw(c);
-        }else{
+        } else {
             paint.setColor(0xFFFFFFFF);
             c.drawRect(0, 0, getWidth(), getHeight(), paint);
         }
@@ -385,7 +407,7 @@ public class CurtainContentLayout extends FrameLayout {
         return b;
     }
 
-    private int getStatusBarHeight(){
+    private int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -395,8 +417,8 @@ public class CurtainContentLayout extends FrameLayout {
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas){
-        if(inSlidingMode){
+    public void dispatchDraw(Canvas canvas) {
+        if (inSlidingMode) {
             paint.setColor(0xFF000000);
             canvas.drawRect(menu.getRight(), 0, getWidth(), getHeight(), paint);
         }

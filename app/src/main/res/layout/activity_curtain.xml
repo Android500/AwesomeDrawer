@@ -1,109 +1,11 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hx.curtain.drawer.CurtainContentLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:behind_menu="@layout/menu_left"
+    app:content="@layout/layout_curtain_content"
+    app:h_waveCount="5"
+    app:v_waveCount="1.1" />
 
-    <!--<com.sevenheaven.curtain.CurtainView-->
-    <!--android:id="@+id/curtain"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_centerHorizontal="true"
-
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white">
-
-                    <android.support.v7.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:id="@+id/fragment_title_bar"
-                                android:layout_width="match_parent"
-                                android:layout_height="?attr/actionBarSize"
-                                android:background="@color/colorPrimaryDark"
-                                android:orientation="vertical">
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:padding="10dp"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:textColor="@android:color/white"
-                                    android:text="Curtain Menu" />
-                            </RelativeLayout>
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:orientation="vertical">
-
-
-                            <android.support.v7.widget.AppCompatImageView
-                                android:id="@+id/header"
-                                android:layout_width="73dp"
-                                android:layout_height="73dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@mipmap/rounded_corners" />
-
-                            <android.support.v7.widget.AppCompatTextView
-                                android:id="@+id/nickname"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:text="Android1404"
-                                android:textColor="@android:color/white"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                    </android.support.v7.widget.LinearLayoutCompat>
-
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="10dp"
-                    android:padding="10dp"
-                    android:text="@string/android_desc"
-                    android:textColor="#444444"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-        </ScrollView>
-
-</LinearLayout>

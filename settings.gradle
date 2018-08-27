@@ -1,1 +1,1 @@
-include ':app',':foldingLayout'
+include ':app',':foldingLayout', ':curtaindrawer'
