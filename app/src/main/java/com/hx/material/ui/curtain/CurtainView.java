@@ -106,7 +106,6 @@ public class CurtainView extends View {
                 channel = channel > 255 ? 255 : channel;
                 colors[index] = 0xFF000000 | channel << 16 | channel << 8 | channel;
                 index += 1;
-
             }
         }
         //k+=0.4f;
