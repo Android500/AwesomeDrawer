@@ -88,7 +88,6 @@ public class CurtainView extends View {
 
                 float yOffset = H_MAX_WAVE_HEIGHT / 2 * progress + H_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)j/WIDTH*5*Math.PI+k);
 
-
                 //垂直方向竖直压缩时的坐标
                 float vXPostion = origs[(i*(WIDTH+1)+j)*2+0] + (bitmapwidth - origs[(i*(WIDTH+1)+j)*2+0]) * progress;
                 //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
