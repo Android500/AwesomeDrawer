@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.hx.material.ui.curtain.CurtainActivity
+import com.hx.material.ui.curtain.MutilCurtainsActivity
 import com.hx.material.ui.folding.FoldContentActivity
 import com.hx.material.ui.folding.FoldDrawerMenu2Activity
 import com.hx.material.ui.folding.FoldDrawerMenuActivity
@@ -15,6 +16,7 @@ class MainAcitvity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitvity_main)
+        setSupportActionBar(toolbar)
         fold_cotnent.setOnClickListener {
             startActivity(Intent(this, FoldContentActivity::class.java))
         }
@@ -29,6 +31,10 @@ class MainAcitvity : AppCompatActivity() {
 
         curtain_menu.setOnClickListener {
             startActivity(Intent(this, CurtainActivity::class.java))
+        }
+
+        curtain_view.setOnClickListener {
+            startActivity(Intent(this, MutilCurtainsActivity::class.java))
         }
     }
 }

@@ -260,10 +260,6 @@ public class CurtainContentLayout extends FrameLayout {
             }
 
         });
-
-//        shadow = new LinearGradient(0, 0, 50, 0, new int[]{0x0, 0x88000000, 0xAA000000}, new float[]{0, 0.5F, 1.0F}, Shader.TileMode.CLAMP);
-//
-//
     }
 
     public void toggle() {
@@ -324,6 +320,12 @@ public class CurtainContentLayout extends FrameLayout {
 
             addView(menu, 0, layoutParams);
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        defaultMenuWidth = (int) (getMeasuredWidth() * 0.75f);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.hx.material.ui.demo;
+package com.hx.material.ui.tutorial;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
