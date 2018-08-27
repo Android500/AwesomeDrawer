@@ -116,7 +116,6 @@ public class CurtainView extends View {
                 //Log.e("TAG" , "vXSinPostion: " + vXSinPostion);
                 //x坐标不变
                 verts[(i*(WIDTH+1)+j)*2+0]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
-                //增加k值是为了让相位产生移动，从而可以飘动起来
                 //y坐标改变，呈现正弦曲线
                 //verts[(i*(WIDTH+1)+j)*2+1]=origs[(i*(WIDTH+1)+j)*2+1]+offset*50;
 
