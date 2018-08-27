@@ -2,8 +2,11 @@
 
 ## Introduction
 实现Android窗帘拉开折叠效果
+
 ##Usage
+
 ###xml布局文件使用
+
 ```xml
 <com.hx.curtain.drawer.CurtainContentLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +20,9 @@
     app:h_waveCount="5"
     app:v_waveCount="1.1" />
 ```
+
 ###监听滑动的系数
+
 ```java
 CurtainContentLayout curtain_layout = findViewById(R.id.curtain_layout);
 curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayoutListener() {
@@ -29,6 +34,7 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 ```
 
 ###自定义属性
+
 There are three attributes which are applicable to `RippleView`.
 
   * `behind_menu` menu后面的布局
