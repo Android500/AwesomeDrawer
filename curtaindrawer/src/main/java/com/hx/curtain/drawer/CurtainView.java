@@ -66,12 +66,10 @@ public class CurtainView extends View {
         init();
     }
 
-
     public void setWaveHeight(float progress) {
         this.progress = progress;
         invalidate();
     }
-
 
     public void init() {
         COUNT = (WIDTH + 1) * (HEIGHT + 1);
