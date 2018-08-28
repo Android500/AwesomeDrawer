@@ -111,12 +111,9 @@ public class CurtainView extends View {
                 float vXPostion = origs[(i*(WIDTH+1)+j)*2+0] + (bitmapwidth - origs[(i*(WIDTH+1)+j)*2+0]) * progress;
                 //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*vWaveCount*Math.PI + k);
-                //Log.e("TAG" , "vXSinPostion: " + vXSinPostion);
                 //x坐标不变
                 verts[(i*(WIDTH+1)+j)*2+0]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
                 //y坐标改变，呈现正弦曲线
-                //verts[(i*(WIDTH+1)+j)*2+1]=origs[(i*(WIDTH+1)+j)*2+1]+offset*50;
-
                 verts[(i * (WIDTH + 1) + j) * 2 + 1] = origs[(i * (WIDTH + 1) + j) * 2 + 1] + yOffset;//
 
                 int channel = 255 - (int)(yOffset * 3);
