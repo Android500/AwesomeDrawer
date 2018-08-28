@@ -28,7 +28,6 @@ public class CurtainView extends View {
     private int maxAlpha = 0xFF;
 
     private float k;
-
     private float progress;
     /**竖直波浪个数*/
     private float hWaveCount;
@@ -70,7 +69,6 @@ public class CurtainView extends View {
 
     public void setWaveHeight(float progress) {
         this.progress = progress;
-        Log.e("TAG" , "progress: " + progress);
         invalidate();
     }
 
