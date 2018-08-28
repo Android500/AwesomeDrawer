@@ -25,6 +25,4 @@ public class CurtainActivity extends Activity {
             }
         });
     }
-
-
 }
