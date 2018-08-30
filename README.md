@@ -55,7 +55,6 @@ loading img....
 
 
 ## Contacts
-* QQ Group: 869593665
 * E-mail: 93980584@qq.com
 
 ## License
