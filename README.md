@@ -56,7 +56,7 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 
 
 ## Contacts
-* E-mail: 93980584@qq.com
+* E-Mail: 93980584@qq.com
 
 ## License
 ```
