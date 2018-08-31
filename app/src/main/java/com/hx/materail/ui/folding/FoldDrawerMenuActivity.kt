@@ -10,11 +10,11 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_fold_menu.*
-import ui.material.hx.com.hxmaterial.R
 import android.support.v4.view.ViewCompat.setTranslationX
 import android.opengl.ETC1.getWidth
 import android.support.v4.view.ViewCompat
 import android.view.ViewGroup
+import com.hx.materail.ui.R
 
 
 /**

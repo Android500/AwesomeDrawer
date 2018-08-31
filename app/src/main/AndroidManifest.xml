@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ui.material.hx.com.hxmaterial">
+    package="com.hx.materail.ui">
 
     <application
         android:allowBackup="true"
@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name="com.hx.material.ui.MainAcitvity"
+            android:name="com.hx.materail.ui.MainAcitvity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +51,7 @@
 
 
         <activity
-            android:name="com.hx.material.ui.curtain.CurtainActivity"
+            android:name="com.hx.materail.ui.curtain.CurtainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

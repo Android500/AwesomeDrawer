@@ -1,4 +1,4 @@
-package com.hx.material.ui.tutorial;
+package com.hx.materail.ui.tutorial;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +8,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import ui.material.hx.com.hxmaterial.R;
+import com.hx.materail.ui.R;
+
 
 public class CurtainView extends View {
     private Bitmap mbitmap;

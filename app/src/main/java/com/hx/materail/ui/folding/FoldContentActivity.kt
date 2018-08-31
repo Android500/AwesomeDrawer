@@ -11,8 +11,8 @@ import android.util.DisplayMetrics
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import com.hx.materail.ui.R
 import kotlinx.android.synthetic.main.acitvity_fold_content.*
-import ui.material.hx.com.hxmaterial.R
 
 class FoldContentActivity : AppCompatActivity() {
 

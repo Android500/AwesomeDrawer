@@ -1,4 +1,4 @@
-package com.hx.material.ui.curtain;
+package com.hx.materail.ui.curtain;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.hx.curtain.drawer.CurtainContentLayout;
+import com.hx.materail.ui.R;
 
-import ui.material.hx.com.hxmaterial.R;
 
 public class CurtainActivity extends Activity {
 

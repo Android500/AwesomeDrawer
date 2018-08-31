@@ -3,9 +3,9 @@ package com.hx.material.ui.tutorial
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
+import com.hx.materail.ui.R
 import kotlinx.android.synthetic.main.activity_curtain_demo.*
 
-import ui.material.hx.com.hxmaterial.R
 
 class CurtainDemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
