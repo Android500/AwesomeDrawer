@@ -42,7 +42,7 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
   * `v_waveCount` 竖直方向折叠的波浪个数
   * `maxRate`     menu最大的收缩比
 ### 应用在Menu中,和CurtainContentLayout的各种style预览如下：
-loading img....
+###loading img....
 
  ![image](effect/curtain_menu.gif)           ![image](effect/mutil_curtain_views.gif)
 
