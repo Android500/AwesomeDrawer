@@ -43,7 +43,6 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
   * `maxRate`     menu最大的收缩比
 ### 应用在Menu中,和CurtainContentLayout的各种style预览如下：
 
-###loading img
 
  ![image](effect/curtain_menu.gif)           ![image](effect/mutil_curtain_views.gif)
 
