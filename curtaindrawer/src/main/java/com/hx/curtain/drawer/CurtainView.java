@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class CurtainView extends View {
     private Bitmap mbitmap;
@@ -34,9 +35,11 @@ public class CurtainView extends View {
     private int bitmapwidth;
     private int bitmapheight;
 
+    private AccelerateDecelerateInterpolator interpolator = new AccelerateDecelerateInterpolator();
+    ;
+
     public CurtainView(Context context) {
         super(context);
-        init();
     }
 
     public CurtainView(Context context, float hWaveCount, float vWaveCount) {
@@ -47,23 +50,15 @@ public class CurtainView extends View {
 
     public CurtainView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
     }
 
     public CurtainView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
     }
 
     public void setWaveHeight(float progress) {
         this.progress = progress;
         invalidate();
-    }
-
-    public void init() {
-        COUNT = (WIDTH + 1) * (HEIGHT + 1);
-        verts = new float[COUNT * 2];
-        origs = new float[COUNT * 2];
     }
 
     public void setTexture(Bitmap bitmap){
@@ -76,7 +71,7 @@ public class CurtainView extends View {
             for (int j = 0; j < WIDTH + 1; j++) {
                 float fx = bitmapwidth / (float) WIDTH * j;
                 //偶数位记录x坐标  奇数位记录Y坐标
-                origs[index * 2 + 0] = verts[index * 2 + 0] = fx;
+                origs[index * 2] = verts[index * 2] = fx;
                 origs[index * 2 + 1] = verts[index * 2 + 1] = fy;
                 index++;
             }
@@ -97,19 +92,16 @@ public class CurtainView extends View {
                 //中间水平线y坐标
                 float centerY = (waveHeight + bitmapheight) / 2;
 
-                float waveHeight =  H_MAX_WAVE_HEIGHT * progress;
-                float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+k);
+                float waveHeight =  H_MAX_WAVE_HEIGHT *    progress;
+                float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+ k);
 
                 //未优化时的x坐标
                 float vXPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
-                //下面会对x两个优化
-                //一:速率衰减优化
-                //vXPostion = vXPostion * scaleRate;
-                //二:x坐标优化-->垂直方向正弦曲线偏移优化后的坐标,vWaveCount个波峰波谷
+                //坐标优化-->垂直方向正弦曲线偏移优化后的坐标,vWaveCount个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*vWaveCount*Math.PI + k);
 
                 //x坐标不变
-                verts[xIndex]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
+                verts[xIndex]=  vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
 
                 //经过上述扭曲之后整个图片变高了H_MAX_WAVE_HEIGHT像素
                 //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
