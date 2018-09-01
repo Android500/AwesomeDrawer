@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.hx.material.ui.folding.FoldContentActivity"
+            android:name="com.hx.materail.ui.folding.FoldContentActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +18,7 @@
         </activity>
 
         <activity
-            android:name="com.hx.material.ui.folding.FoldDrawerMenuActivity"
+            android:name="com.hx.materail.ui.folding.FoldDrawerMenuActivity"
 
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -38,7 +38,7 @@
         </activity>
 
         <activity
-            android:name="com.hx.material.ui.folding.FoldDrawerMenu2Activity"
+            android:name="com.hx.materail.ui.folding.FoldDrawerMenu2Activity"
 
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name="com.hx.material.ui.tutorial.CurtainDemoActivity"
+            android:name="com.hx.materail.ui.tutorial.CurtainDemoActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,7 +71,7 @@
         </activity>
 
         <activity
-            android:name="com.hx.material.ui.curtain.MutilCurtainsActivity"
+            android:name="com.hx.materail.ui.curtain.MutilCurtainsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

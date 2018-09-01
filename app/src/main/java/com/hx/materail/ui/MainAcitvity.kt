@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.hx.materail.ui.curtain.CurtainActivity
-import com.hx.material.ui.curtain.MutilCurtainsActivity
-import com.hx.material.ui.folding.FoldContentActivity
-import com.hx.material.ui.folding.FoldDrawerMenu2Activity
-import com.hx.material.ui.folding.FoldDrawerMenuActivity
-import com.hx.material.ui.tutorial.CurtainDemoActivity
+import com.hx.materail.ui.curtain.MutilCurtainsActivity
+import com.hx.materail.ui.folding.FoldContentActivity
+import com.hx.materail.ui.folding.FoldDrawerMenu2Activity
+import com.hx.materail.ui.folding.FoldDrawerMenuActivity
+import com.hx.materail.ui.tutorial.CurtainDemoActivity
 import kotlinx.android.synthetic.main.acitvity_main.*
 
 class MainAcitvity : AppCompatActivity() {

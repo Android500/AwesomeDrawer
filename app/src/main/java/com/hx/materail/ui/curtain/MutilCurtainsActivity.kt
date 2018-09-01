@@ -1,4 +1,4 @@
-package com.hx.material.ui.curtain
+package com.hx.materail.ui.curtain
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

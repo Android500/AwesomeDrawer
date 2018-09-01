@@ -1,4 +1,4 @@
-package com.hx.material.ui.folding
+package com.hx.materail.ui.folding
 
 import android.app.Activity
 import android.graphics.Color

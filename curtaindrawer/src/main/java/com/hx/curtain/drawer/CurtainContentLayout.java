@@ -13,11 +13,12 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
 import com.hx.curtain.drawer.nineoldandroids.animation.Animator;
@@ -245,7 +246,7 @@ public class CurtainContentLayout extends FrameLayout {
 
         slidingAnimator = ValueAnimator.ofInt(vx, 1);
         slidingAnimator.setDuration(500L);
-        slidingAnimator.setInterpolator(new DecelerateInterpolator());
+        slidingAnimator.setInterpolator(new OvershootInterpolator());
         slidingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -284,13 +285,13 @@ public class CurtainContentLayout extends FrameLayout {
             case SLIDING_MODE_CLOSED:
                 slidingAnimator.setIntValues(vx, defaultMenuWidth);
                 slidingAnimator.setDuration(500L);
-                slidingAnimator.setInterpolator(new DecelerateInterpolator());
+                slidingAnimator.setInterpolator(new OvershootInterpolator());
                 slidingAnimator.start();
                 break;
             case SLIDING_MODE_OPENED:
                 slidingAnimator.setIntValues(vx, 0);
                 slidingAnimator.setDuration(500L);
-                slidingAnimator.setInterpolator(new DecelerateInterpolator());
+                slidingAnimator.setInterpolator(new OvershootInterpolator());
                 slidingAnimator.start();
                 break;
         }
@@ -388,12 +389,12 @@ public class CurtainContentLayout extends FrameLayout {
                     if (event.getX() > defaultMenuWidth / 2) {
                         slidingAnimator.setIntValues(vx, defaultMenuWidth);
                         slidingAnimator.setDuration((long) (Math.abs(defaultMenuWidth - vx) / (float) defaultMenuWidth * 500L));
-                        slidingAnimator.setInterpolator(new DecelerateInterpolator());
+                        slidingAnimator.setInterpolator(new OvershootInterpolator());
                         slidingAnimator.start();
                     } else {
                         slidingAnimator.setIntValues(vx, 0);
                         slidingAnimator.setDuration((long) (vx / (float) defaultMenuWidth * 500L));
-                        slidingAnimator.setInterpolator(new DecelerateInterpolator());
+                        slidingAnimator.setInterpolator(new OvershootInterpolator());
                         slidingAnimator.start();
                     }
                 }

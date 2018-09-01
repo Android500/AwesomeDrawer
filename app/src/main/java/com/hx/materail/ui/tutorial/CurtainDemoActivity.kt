@@ -1,4 +1,4 @@
-package com.hx.material.ui.tutorial
+package com.hx.materail.ui.tutorial
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

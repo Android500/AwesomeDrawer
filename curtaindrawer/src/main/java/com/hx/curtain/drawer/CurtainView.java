@@ -10,15 +10,14 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class CurtainView extends View {
     private Bitmap mbitmap;
-    //将图片划分成200个小格
-    private static int WIDTH = 30;
-    private static int HEIGHT = 30;
+    //将图片划分成40个小格
+    private static int WIDTH = 25;
+    private static int HEIGHT = 25;
     private float waveHeight = 0;
-    private float startAngle = 0;
     //最大水平的波形高度
-    private float H_MAX_WAVE_HEIGHT = 50;
+    private static float H_MAX_WAVE_HEIGHT = 50;
     //最大垂直的波形高度
-    private float V_MAX_WAVE_HEIGHT = 800;
+    private static float V_MAX_WAVE_HEIGHT = 800;
     //小格相交的总的点数
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);
     private float[] verts = new float[COUNT * 2];
@@ -31,12 +30,8 @@ public class CurtainView extends View {
     private float hWaveCount;
     /**水平波浪个数*/
     private float vWaveCount;
-
     private int bitmapwidth;
     private int bitmapheight;
-
-    private AccelerateDecelerateInterpolator interpolator = new AccelerateDecelerateInterpolator();
-    ;
 
     public CurtainView(Context context) {
         super(context);
@@ -103,7 +98,7 @@ public class CurtainView extends View {
                 //x坐标不变
                 verts[xIndex]=  vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
 
-                //经过上述扭曲之后整个图片变高了H_MAX_WAVE_HEIGHT像素
+                //经过上述扭曲之后整个图片变高了waveHeight像素
                 //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
                 //越靠近中间水平线的像素偏移越小,从waveHeight / 2递减为0
                 //计算跟水平线的像素距离

@@ -4,11 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:background="#444444">
-
->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/menu_layout"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/nav_header_height"
         android:gravity="bottom"
         android:orientation="vertical"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="@dimen/nav_header_vertical_spacing"
             android:src="@mipmap/rounded_corners" />
 
