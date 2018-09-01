@@ -126,6 +126,7 @@ public class CurtainView extends View {
                 //y坐标改变，呈现正弦曲线
                 verts[yIndex] = origs[yIndex] + scaleyOffset;//
 
+                //阴影着色
                 int channel = 255 - (int)(yOffset * 3);
                 channel = channel < 0 ? 0 : channel;
                 channel = channel > 255 ? 255 : channel;
