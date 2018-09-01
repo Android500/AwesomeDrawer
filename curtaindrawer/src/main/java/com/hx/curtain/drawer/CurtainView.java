@@ -115,20 +115,13 @@ public class CurtainView extends View {
                 //x坐标不变
                 verts[xIndex]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
 
-
                 //经过上述扭曲之后整个图片变高了H_MAX_WAVE_HEIGHT像素
                 //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
-                //越靠近中间水平线的像素偏移越小,waveHeight / 2递减为0
+                //越靠近中间水平线的像素偏移越小,从waveHeight / 2递减为0
                 //计算跟水平线的像素距离
                 float centerY = (waveHeight + bitmapheight) / 2;
+                //scaleyOffset > 0水平线上方,scaleyOffset < 0 水平线下方
                 float scaleyOffset = (centerY - origs[yIndex]) / centerY * yOffset;
-
-                Log.e("scaleyOffset", "centerY: " + centerY
-                        + "\nscaleyOffset: " + scaleyOffset
-                        + "\ncenterY - origs[yIndex]): " + (centerY - origs[yIndex])
-                        + "\norigs[yIndex]: " + origs[yIndex]
-                        + "\nbitmapheight: " + bitmapheight);
-
 
                 //y坐标改变，呈现正弦曲线
                 verts[yIndex] = origs[yIndex] + scaleyOffset;//
