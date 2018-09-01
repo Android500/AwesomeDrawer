@@ -15,10 +15,10 @@ public class CurtainView extends View {
     private Bitmap mbitmap;
     private static int WIDTH = 30;
     private static int HEIGHT = 30;
-    //最大水平的波形高度
-    private float H_MAX_WAVE_HEIGHT = 50;
     //最大垂直的波形高度
-    private float V_MAX_WAVE_HEIGHT = 500;
+    private static float V_MAX_WAVE_HEIGHT = 700;
+    //最大垂直的波形高度
+    private static float H_MAX_WAVE_HEIGHT = 50;
 
     //小格相交的总的点数
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);

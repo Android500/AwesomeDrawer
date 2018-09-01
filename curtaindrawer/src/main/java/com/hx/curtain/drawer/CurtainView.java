@@ -16,16 +16,13 @@ public class CurtainView extends View {
     private float startAngle = 0;
     //最大水平的波形高度
     private float H_MAX_WAVE_HEIGHT = 50;
-
     //最大垂直的波形高度
-    private float V_MAX_WAVE_HEIGHT = 500;
-
+    private float V_MAX_WAVE_HEIGHT = 800;
     //小格相交的总的点数
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);
     private float[] verts = new float[COUNT * 2];
     private float[] origs = new float[COUNT * 2];
     private int[] colors = new int[COUNT * 2];
-    private int maxAlpha = 0xFF;
 
     private float k;
     private float progress;
@@ -36,14 +33,6 @@ public class CurtainView extends View {
 
     private int bitmapwidth;
     private int bitmapheight;
-
-    public void setHWaveCount(float hWaveCount) {
-        this.hWaveCount = hWaveCount;
-    }
-
-    public void setvVWaveCount(float vWaveCount) {
-        this.vWaveCount = vWaveCount;
-    }
 
     public CurtainView(Context context) {
         super(context);
@@ -105,13 +94,21 @@ public class CurtainView extends View {
 
                 int xIndex = (i*(WIDTH+1)+j)*2;
                 int yIndex = (i * (WIDTH + 1) + j) * 2 + 1;
+                //中间水平线y坐标
+                float centerY = (waveHeight + bitmapheight) / 2;
+
 
                 float waveHeight =  H_MAX_WAVE_HEIGHT * progress;
                 float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+k);
-                //垂直方向竖直压缩时的坐标
+
+                //未优化时的x坐标
                 float vXPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
-                //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
+                //下面会对x两个优化
+                //一:速率衰减优化
+                //vXPostion = vXPostion * scaleRate;
+                //二:x坐标优化-->垂直方向正弦曲线偏移优化后的坐标,vWaveCount个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*vWaveCount*Math.PI + k);
+
                 //x坐标不变
                 verts[xIndex]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
 
@@ -119,12 +116,11 @@ public class CurtainView extends View {
                 //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
                 //越靠近中间水平线的像素偏移越小,从waveHeight / 2递减为0
                 //计算跟水平线的像素距离
-                float centerY = (waveHeight + bitmapheight) / 2;
-                //scaleyOffset > 0水平线上方,scaleyOffset < 0 水平线下方
-                float scaleyOffset = (centerY - origs[yIndex]) / centerY * yOffset;
+                //scaleRate > 0水平线上方,scaleRate < 0 水平线下方
+                float scaleOffset = (centerY - origs[yIndex]) / centerY * yOffset;
 
                 //y坐标改变，呈现正弦曲线
-                verts[yIndex] = origs[yIndex] + scaleyOffset;//
+                verts[yIndex] = origs[yIndex] + scaleOffset ;//
 
                 //阴影着色
                 int channel = 255 - (int)(yOffset * 3);
