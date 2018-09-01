@@ -14,6 +14,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
 import com.hx.curtain.drawer.nineoldandroids.animation.Animator;
@@ -285,6 +287,7 @@ public class CurtainContentLayout extends FrameLayout {
             case SLIDING_MODE_OPENED:
                 slidingAnimator.setIntValues(vx, 0);
                 slidingAnimator.setDuration(400L);
+                slidingAnimator.setInterpolator(new DecelerateInterpolator());
                 slidingAnimator.start();
                 break;
         }

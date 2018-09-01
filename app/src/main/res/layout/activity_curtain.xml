@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:behind_menu="@layout/menu_left"
+    app:maxRate="0.75"
     app:content="@layout/layout_curtain_content"
-    app:h_waveCount="5"
+    app:h_waveCount="7"
     app:v_waveCount="1.1" />
 

@@ -103,16 +103,35 @@ public class CurtainView extends View {
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
-                float yOffset = H_MAX_WAVE_HEIGHT / 2 * progress + H_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+k);
+                int xIndex = (i*(WIDTH+1)+j)*2;
+                int yIndex = (i * (WIDTH + 1) + j) * 2 + 1;
 
+                float waveHeight =  H_MAX_WAVE_HEIGHT * progress;
+                float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+k);
                 //垂直方向竖直压缩时的坐标
-                float vXPostion = origs[(i*(WIDTH+1)+j)*2+0] + (bitmapwidth - origs[(i*(WIDTH+1)+j)*2+0]) * progress;
+                float vXPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
                 //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*vWaveCount*Math.PI + k);
                 //x坐标不变
-                verts[(i*(WIDTH+1)+j)*2+0]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
+                verts[xIndex]= vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
+
+
+                //经过上述扭曲之后整个图片变高了H_MAX_WAVE_HEIGHT像素
+                //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
+                //越靠近中间水平线的像素偏移越小,waveHeight / 2递减为0
+                //计算跟水平线的像素距离
+                float centerY = (waveHeight + bitmapheight) / 2;
+                float scaleyOffset = (centerY - origs[yIndex]) / centerY * yOffset;
+
+                Log.e("scaleyOffset", "centerY: " + centerY
+                        + "\nscaleyOffset: " + scaleyOffset
+                        + "\ncenterY - origs[yIndex]): " + (centerY - origs[yIndex])
+                        + "\norigs[yIndex]: " + origs[yIndex]
+                        + "\nbitmapheight: " + bitmapheight);
+
+
                 //y坐标改变，呈现正弦曲线
-                verts[(i * (WIDTH + 1) + j) * 2 + 1] = origs[(i * (WIDTH + 1) + j) * 2 + 1] + yOffset;//
+                verts[yIndex] = origs[yIndex] + scaleyOffset;//
 
                 int channel = 255 - (int)(yOffset * 3);
                 channel = channel < 0 ? 0 : channel;
