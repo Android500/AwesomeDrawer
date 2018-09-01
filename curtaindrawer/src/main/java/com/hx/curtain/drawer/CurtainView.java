@@ -97,7 +97,6 @@ public class CurtainView extends View {
                 //中间水平线y坐标
                 float centerY = (waveHeight + bitmapheight) / 2;
 
-
                 float waveHeight =  H_MAX_WAVE_HEIGHT * progress;
                 float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+k);
 
