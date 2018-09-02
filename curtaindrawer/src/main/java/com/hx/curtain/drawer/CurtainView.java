@@ -26,9 +26,9 @@ public class CurtainView extends View {
 
     private float k;
     private float progress;
-    /**竖直波浪个数*/
+    //竖直波浪个数
     private float hWaveCount;
-    /**水平波浪个数*/
+    //水平波浪个数
     private float vWaveCount;
     private int bitmapwidth;
     private int bitmapheight;
@@ -56,7 +56,7 @@ public class CurtainView extends View {
         invalidate();
     }
 
-    public void setTexture(Bitmap bitmap){
+    public void setTexture(Bitmap bitmap) {
         this.mbitmap = bitmap;
         bitmapwidth = mbitmap.getWidth();
         bitmapheight = mbitmap.getHeight();
@@ -82,34 +82,33 @@ public class CurtainView extends View {
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
-                int xIndex = (i*(WIDTH+1)+j)*2;
+                int xIndex = (i * (WIDTH + 1) + j) * 2;
                 int yIndex = (i * (WIDTH + 1) + j) * 2 + 1;
                 //中间水平线y坐标
                 float centerY = (waveHeight + bitmapheight) / 2;
 
-                float waveHeight =  H_MAX_WAVE_HEIGHT *    progress;
-                float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float)j/WIDTH*hWaveCount*Math.PI+ k);
+                float waveHeight = H_MAX_WAVE_HEIGHT * progress;
+                float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float) j / WIDTH * hWaveCount * Math.PI + k);
 
                 //未优化时的x坐标
                 float vXPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
                 //坐标优化-->垂直方向正弦曲线偏移优化后的坐标,vWaveCount个波峰波谷
-                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float)i/WIDTH*vWaveCount*Math.PI + k);
+                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float) i / WIDTH * vWaveCount * Math.PI + k);
 
-                //x坐标不变
-                verts[xIndex]=  vXSinPostion *((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
+                verts[xIndex] = vXSinPostion * ((bitmapwidth - vXPostion) / bitmapwidth) + vXPostion;
 
                 //经过上述扭曲之后整个图片变高了waveHeight像素
                 //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
                 //越靠近中间水平线的像素偏移越小,从waveHeight / 2递减为0
                 //计算跟水平线的像素距离
-                //scaleRate > 0水平线上方,scaleRate < 0 水平线下方
+                //scaleOffset > 0水平线上方,scaleOffset < 0 水平线下方
                 float scaleOffset = (centerY - origs[yIndex]) / centerY * yOffset;
 
                 //y坐标改变，呈现正弦曲线
-                verts[yIndex] = origs[yIndex] + scaleOffset ;//
+                verts[yIndex] = origs[yIndex] + scaleOffset;//
 
                 //阴影着色
-                int channel = 255 - (int)(yOffset * 3);
+                int channel = 255 - (int) (yOffset * 3);
                 channel = channel < 0 ? 0 : channel;
                 channel = channel > 255 ? 255 : channel;
                 colors[index] = 0xFF000000 | channel << 16 | channel << 8 | channel;
