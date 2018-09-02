@@ -4,11 +4,18 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.PathMeasure;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.hx.materail.ui.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CurtainView extends View {
@@ -42,12 +49,12 @@ public class CurtainView extends View {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    PathMeasure pathMeasure;
     public void setProgress(float progress){
         this.progress = progress;
         invalidate();
     }
-
+    float[] pos = new float[2];
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -106,5 +113,7 @@ public class CurtainView extends View {
                 index++;
             }
         }
+
+
     }
 }
