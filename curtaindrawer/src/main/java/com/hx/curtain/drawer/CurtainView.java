@@ -22,7 +22,7 @@ public class CurtainView extends View {
     //最大水平的波形高度
     private static float H_MAX_WAVE_HEIGHT = 50;
     //最大垂直的波形高度
-    private static float V_MAX_WAVE_HEIGHT = 800;
+    private static float V_MAX_WAVE_HEIGHT = 600;
     //小格相交的总的点数
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);
     private float[] verts = new float[COUNT * 2];

@@ -9,5 +9,5 @@
     app:maxRate="0.75"
     app:content="@layout/layout_curtain_content"
     app:h_waveCount="7"
-    app:v_waveCount="1.5" />
+    app:v_waveCount="1.4" />
 

@@ -34,8 +34,8 @@
             app:behind_menu="@layout/menu_left"
             app:content="@layout/layout_curtain_content"
             app:h_waveCount="5"
-            app:maxRate="0.75"
-            app:v_waveCount="1.1" />
+            app:maxRate="0.70"
+            app:v_waveCount="1.4" />
 
         <View
             android:layout_width="10dp"
