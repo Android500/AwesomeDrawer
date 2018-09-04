@@ -3,16 +3,21 @@ package com.hx.curtain.drawer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.PathMeasure;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CurtainView extends View {
     private Bitmap mbitmap;
     //将图片划分成40个小格
-    private static int WIDTH = 25;
-    private static int HEIGHT = 25;
+    private static int WIDTH = 30;
+    private static int HEIGHT = 30;
     private float waveHeight = 0;
     //最大水平的波形高度
     private static float H_MAX_WAVE_HEIGHT = 50;
@@ -33,6 +38,15 @@ public class CurtainView extends View {
     private int bitmapwidth;
     private int bitmapheight;
 
+    private List<Point> points;
+    private float[] pos = new float[2];
+    private PathMeasure pathMeasure;
+
+    private float[] xOffsets = new float[WIDTH + 1];
+    private float[] yOffsets = new float[WIDTH + 1];
+
+    float[] waveTops = {0, 0.03F, 0.08F, 0.15F, 0.24F, 0.36F, 0.49F, 0.64F, 0.81F, 1.0F};
+
     public CurtainView(Context context) {
         super(context);
     }
@@ -41,6 +55,8 @@ public class CurtainView extends View {
         super(context);
         this.hWaveCount = hWaveCount;
         this.vWaveCount = vWaveCount;
+        this.points = new ArrayList<>();
+        this.pathMeasure = new PathMeasure();
     }
 
     public CurtainView(Context context, AttributeSet attrs) {
@@ -53,6 +69,11 @@ public class CurtainView extends View {
 
     public void setWaveHeight(float progress) {
         this.progress = progress;
+        for (int t = 0; t < waveTops.length; t++) {
+            Point point = points.get(t);
+            point.y = t % 2 != 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
+        }
+         BezierUtils.measurePath(pathMeasure, points);
         invalidate();
     }
 
@@ -60,6 +81,7 @@ public class CurtainView extends View {
         this.mbitmap = bitmap;
         bitmapwidth = mbitmap.getWidth();
         bitmapheight = mbitmap.getHeight();
+
         int index = 0;
         for (int i = 0; i < HEIGHT + 1; i++) {
             float fy = bitmapheight / (float) HEIGHT * i;
@@ -71,12 +93,28 @@ public class CurtainView extends View {
                 index++;
             }
         }
+
+        points.clear();
+        for (int i = 0; i < waveTops.length; i++) {
+            Point point = new Point();
+            point.x = (int) Math.floor((double) (bitmapwidth * waveTops[i]));
+            point.y = i % 2 != 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
+            points.add(point);
+        }
+
+        BezierUtils.measurePath(pathMeasure, points);
         invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        for (int j = 0; j < WIDTH + 1; j++) {
+            pathMeasure.getPosTan(pathMeasure.getLength() * j / (float) WIDTH, pos, null);
+            xOffsets[j] = pos[0];
+            yOffsets[j] = pos[1];
+        }
 
         int index = 0;
         for (int i = 0; i < HEIGHT + 1; i++) {
@@ -90,8 +128,16 @@ public class CurtainView extends View {
                 float waveHeight = H_MAX_WAVE_HEIGHT * progress;
                 float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float) j / WIDTH * hWaveCount * Math.PI + k);
 
+                //bezier optimize
+                yOffset = yOffsets[j];
+
                 //未优化时的x坐标
                 float vXPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
+
+                //bezier optimize
+                vXPostion = xOffsets[j] + (bitmapwidth - xOffsets[j]) * progress;
+
+
                 //坐标优化-->垂直方向正弦曲线偏移优化后的坐标,vWaveCount个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float) i / WIDTH * vWaveCount * Math.PI + k);
 
