@@ -21,8 +21,8 @@ import java.util.List;
 
 public class CurtainView extends View {
     private Bitmap mbitmap;
-    private static int WIDTH = 30;
-    private static int HEIGHT = 30;
+    private static int WIDTH = 50;
+    private static int HEIGHT = 40;
     //最大垂直的波形高度
     private static float V_MAX_WAVE_HEIGHT = 450;
     //最大垂直的波形高度
@@ -46,7 +46,7 @@ public class CurtainView extends View {
     private float[] xOffsets = new float[WIDTH + 1];
     private float[] yOffsets = new float[WIDTH + 1];
 
-    float[] waveTops = {0, 0.03F, 0.08F, 0.15F, 0.24F, 0.36F, 0.49F, 0.64F, 0.81F, 1.0F};
+    private float[] waveTops = {0, 0.03F, 0.08F, 0.15F, 0.24F, 0.36F, 0.49F, 0.64F, 0.81F, 1.0F};
 
     public CurtainView(Context context) {
         super(context);
@@ -90,7 +90,7 @@ public class CurtainView extends View {
         for (int i = 0; i < waveTops.length; i++) {
             Point point = new Point();
             point.x = (int) Math.floor((double) (bitmapwidth * waveTops[i]));
-            point.y = i % 2 == 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
+            point.y = i % 2 != 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
             points.add(point);
         }
 
@@ -101,7 +101,7 @@ public class CurtainView extends View {
         this.progress = progress;
         for (int t = 0; t < waveTops.length; t++) {
             Point point = points.get(t);
-            point.y = t % 2 == 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
+            point.y = t % 2 != 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
         }
         BezierUtils.measurePath(pathMeasure, points);
         invalidate();
@@ -118,8 +118,15 @@ public class CurtainView extends View {
         }
 
         int index = 0;
+        //中间水平线y坐标
+        float waveHeight = H_MAX_WAVE_HEIGHT * progress;
+        float centerY = (waveHeight + bitmapheight) / 2;
+        
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
+
+                int xIndex = (i * (WIDTH + 1) + j) * 2;
+                int yIndex = (i * (WIDTH + 1) + j) * 2 + 1;
 
                 //把每一个水平像素通过正弦公式转换成正弦曲线
                 //H_MAX_WAVE_HEIGHT表示波峰跟波低的垂直距离，皱褶后会王桑超过水平线，所以往下偏移WAVE_HEIGHT / 2
@@ -131,18 +138,28 @@ public class CurtainView extends View {
                 yOffset = yOffsets[j];
 
                 //垂直方向竖直压缩时的坐标
-                float xPostion = origs[(i * (WIDTH + 1) + j) * 2] + (bitmapwidth - origs[(i * (WIDTH + 1) + j) * 2]) * progress;
+                float xPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
 
                 xPostion = xOffsets[j] + (bitmapwidth - xOffsets[j]) * progress;
 
                 //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
-                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float) i / WIDTH * 1.1 * Math.PI + k);
+                float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float) i / WIDTH * 1.8 * Math.PI + k);
                 //每个像素扭曲后的x坐标
                 //origs[(i*(WIDTH+1)+j)*2+0] 原图x坐标
-                verts[(i * (WIDTH + 1) + j) * 2] = vXSinPostion * ((bitmapwidth - xPostion) / bitmapwidth) + xPostion;
+                verts[xIndex] = vXSinPostion * ((bitmapwidth - xPostion) / bitmapwidth) + xPostion;
                 //每个像素扭曲后的Y坐标
                 //origs[(i*(WIDTH+1)+j)*2+1] 原图y坐标
-                verts[(i * (WIDTH + 1) + j) * 2 + 1] = origs[(i * (WIDTH + 1) + j) * 2 + 1] + yOffset;//
+                verts[yIndex] = origs[yIndex] + yOffset;//
+
+                //经过上述扭曲之后整个图片变高了waveHeight像素
+                //现在要做的就是把图片中间水平线分割的上下像素位置向中间偏移使得高度不变
+                //越靠近中间水平线的像素偏移越小,从waveHeight / 2递减为0
+                //计算跟水平线的像素距离
+                //scaleOffset > 0水平线上方,scaleOffset < 0 水平线下方
+                float scaleOffset = (centerY - origs[yIndex]) / centerY * yOffset;
+
+                //y坐标改变，呈现正弦曲线
+                verts[yIndex] = origs[yIndex] + scaleOffset;//
 
                 int channel = 255 - (int) (yOffset * 3);
                 channel = channel < 0 ? 0 : channel;

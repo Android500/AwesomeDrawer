@@ -16,13 +16,12 @@ import java.util.List;
 public class CurtainView extends View {
     private Bitmap mbitmap;
     //将图片划分成40个小格
-    private static int WIDTH = 30;
-    private static int HEIGHT = 30;
-    private float waveHeight = 0;
+    private static int WIDTH = 50;
+    private static int HEIGHT = 40;
     //最大水平的波形高度
     private static float H_MAX_WAVE_HEIGHT = 50;
     //最大垂直的波形高度
-    private static float V_MAX_WAVE_HEIGHT = 600;
+    private static float V_MAX_WAVE_HEIGHT = 500;
     //小格相交的总的点数
     private int COUNT = (WIDTH + 1) * (HEIGHT + 1);
     private float[] verts = new float[COUNT * 2];
@@ -117,15 +116,16 @@ public class CurtainView extends View {
         }
 
         int index = 0;
+        //中间水平线y坐标
+        float waveHeight = H_MAX_WAVE_HEIGHT * progress;
+        float centerY = (waveHeight + bitmapheight) / 2;
+
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
                 int xIndex = (i * (WIDTH + 1) + j) * 2;
                 int yIndex = (i * (WIDTH + 1) + j) * 2 + 1;
-                //中间水平线y坐标
-                float centerY = (waveHeight + bitmapheight) / 2;
 
-                float waveHeight = H_MAX_WAVE_HEIGHT * progress;
                 float yOffset = waveHeight / 2 + waveHeight / 2 * (float) Math.sin((float) j / WIDTH * hWaveCount * Math.PI + k);
 
                 //bezier optimize
