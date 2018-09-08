@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,8 +14,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:logo="@mipmap/rounded_corners"
             android:background="?attr/colorPrimary"
+            app:logo="@mipmap/rounded_corners"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -24,34 +25,44 @@
         android:id="@+id/fold_cotnent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fold_right_content" />
+        android:text="@string/fold_right_content"
+
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/fold_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fold_menu" />
+        android:text="@string/fold_menu"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/fold_menu2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fold_menu2" />
+        android:text="@string/fold_menu2"
+        android:textAllCaps="false" />
+
     <Button
         android:id="@+id/curtain_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Curtain Menu" />
+        android:text="Curtain Menu"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/curtain_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Curtain View Styles" />
+        android:text="Curtain View Styles"
+
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/curtain_tutorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Curtain Effect Tutorial" />
+        android:text="Curtain Effect Tutorial"
+
+        android:textAllCaps="false" />
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 
 import com.hx.curtain.drawer.BezierUtils;
 import com.hx.materail.ui.R;
@@ -46,6 +47,11 @@ public class CurtainView extends View {
     private float[] xOffsets = new float[WIDTH + 1];
     private float[] yOffsets = new float[WIDTH + 1];
 
+    private int touchX;
+    private int touchY;
+
+    private AccelerateInterpolator interpolator;
+
     private float[] waveTops = {0, 0.03F, 0.08F, 0.15F, 0.24F, 0.36F, 0.49F, 0.64F, 0.81F, 1.0F};
 
     public CurtainView(Context context) {
@@ -64,6 +70,7 @@ public class CurtainView extends View {
     }
 
     public void init() {
+        this.interpolator = new AccelerateInterpolator();
         mbitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.timg);
         bitmapwidth = mbitmap.getWidth();
         bitmapheight = mbitmap.getHeight();
@@ -95,22 +102,23 @@ public class CurtainView extends View {
         }
 
         BezierUtils.measurePath(pathMeasure, points);
+        createVerts();
     }
 
     public void setProgress(float progress) {
+        this.touchY = HEIGHT / 2;
         this.progress = progress;
         for (int t = 0; t < waveTops.length; t++) {
             Point point = points.get(t);
             point.y = t % 2 != 0 ? 0 : (int) (H_MAX_WAVE_HEIGHT * progress);
         }
+
         BezierUtils.measurePath(pathMeasure, points);
+        createVerts();
         invalidate();
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
+    private void createVerts(){
         for (int j = 0; j < WIDTH + 1; j++) {
             pathMeasure.getPosTan(pathMeasure.getLength() * j / (float) WIDTH, pos, null);
             xOffsets[j] = pos[0];
@@ -121,7 +129,8 @@ public class CurtainView extends View {
         //中间水平线y坐标
         float waveHeight = H_MAX_WAVE_HEIGHT * progress;
         float centerY = (waveHeight + bitmapheight) / 2;
-        
+        float longDis = bitmapheight / (float) HEIGHT * (touchY / (float)HEIGHT * (HEIGHT + 1f));
+
         for (int i = 0; i < HEIGHT + 1; i++) {
             for (int j = 0; j < WIDTH + 1; j++) {
 
@@ -141,6 +150,9 @@ public class CurtainView extends View {
                 float xPostion = origs[xIndex] + (bitmapwidth - origs[xIndex]) * progress;
 
                 xPostion = xOffsets[j] + (bitmapwidth - xOffsets[j]) * progress;
+
+//                float speedRate =  Math.abs(longDis -  origs[yIndex]) / longDis;
+//                xPostion = xPostion - xPostion * interpolator.getInterpolation(speedRate) *((bitmapwidth - xPostion) / bitmapwidth);
 
                 //垂直方向正弦曲线优化后的坐标,1.1->个波峰波谷
                 float vXSinPostion = V_MAX_WAVE_HEIGHT / 2 * progress * (float) Math.sin((float) i / WIDTH * 1.8 * Math.PI + k);
@@ -168,7 +180,11 @@ public class CurtainView extends View {
                 index += 1;
             }
         }
+    }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         canvas.drawBitmapMesh(mbitmap, WIDTH, HEIGHT, verts, 0, colors, 0, null);
     }
 }
