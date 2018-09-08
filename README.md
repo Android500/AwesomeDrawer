@@ -45,7 +45,7 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 
 ## Bolg
 
-  * [https://blog.csdn.net/u010949962](https://blog.csdn.net/u010949962)
+  * [https://www.jianshu.com/u/c95d21153470](https://www.jianshu.com/u/c95d21153470)
 
 ## Location
 
