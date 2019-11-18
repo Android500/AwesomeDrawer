@@ -47,17 +47,8 @@ curtain_layout.setCurtainLayoutListener(new CurtainContentLayout.OnCurtainLayout
 
   * [https://www.jianshu.com/u/c95d21153470](https://www.jianshu.com/u/c95d21153470)
 
-## Location
-
-* ShenZhen,China
-
-
-## Contacts
-* E-Mail: 93980584@qq.com
-
 ## License
 ```
-Copyright 2018 93980584@qq.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
